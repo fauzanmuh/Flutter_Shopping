@@ -1,11 +1,19 @@
-import 'package:flutter_shopping/models/item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shopping/widgets/card_home.dart';
+import 'package:flutter_shopping/models/item.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
   final List<Item> items = [
-    Item(name: 'Sugar', price: 5000),
-    Item(name: 'Salt', price: 2000)
+    Item(
+      name: 'Sugar', 
+      price: 5000,
+      description: 'Gula bukan sembarang gula'),
+    
+    Item(
+      name: 'Salt', 
+      price: 2000,
+      description: 'Garam bukan sembarang garam')
   ];
 
   @override
@@ -25,21 +33,7 @@ class HomePage extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(context, '/item', arguments: item);
               },
-              child: Card(
-                child: Container(
-                  margin: const EdgeInsets.all(8),
-                  child: Row(
-                    children: [
-                      Expanded(child: Text(item.name)),
-                      Expanded(
-                          child: Text(
-                        item.price.toString(),
-                        textAlign: TextAlign.end,
-                      ))
-                    ],
-                  ),
-                ),
-              ),
+              child: CardHome(item: item),
             );
           },
         ),
